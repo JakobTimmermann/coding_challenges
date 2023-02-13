@@ -1,8 +1,10 @@
 from math import sqrt
 
+
 def digit_sum(n):
     """Return the sum of the digits of `n`"""
     return sum(map(int, str(n)))
+
 
 def prime_factor_generator(n):    # (cf. https://stackoverflow.com/a/15703327/849891)
     j = 2
@@ -15,6 +17,15 @@ def prime_factor_generator(n):    # (cf. https://stackoverflow.com/a/15703327/84
         else:
             if n > 1:
                 yield n; break
+
+
+def is_prime(number_to_check):
+    if number_to_check < 0:
+        return False
+    for potential_divisor in range(2, int(number_to_check ** 0.5) + 1):
+        if number_to_check % potential_divisor == 0:
+            return False
+    return True
 
 
 def prime_number_generator():

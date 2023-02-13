@@ -4,9 +4,9 @@ import os, sys
 
 current_folder = os.path.dirname(__file__)
 
-sys.path.append(os.path.join(current_folder, '..'))
+sys.path.append(os.path.join(current_folder, '../../utils/'))
 
-from utils import digit_sum
+from project_euler_utils import digit_sum
 
 def factorial(n):
     x = n
