@@ -19,13 +19,13 @@ def prime_factor_generator(n):    # (cf. https://stackoverflow.com/a/15703327/84
                 yield n; break
 
 
-def is_prime(number_to_check):
+def is_prime(number_to_check, include_one = True):
     if number_to_check < 0:
         return False
     for potential_divisor in range(2, int(number_to_check ** 0.5) + 1):
         if number_to_check % potential_divisor == 0:
             return False
-    return True
+    return True if include_one else number_to_check > 1
 
 
 def prime_number_generator():
@@ -82,7 +82,10 @@ def fibonacci_generator():
         f1, f2 = f2, f1 + f2
 
 
-
+def isPalindrome(string):
+    if len(string) < 2:
+        return True
+    return string[0] == string[-1] and isPalindrome(string[1:-1]) 
 
 
 
