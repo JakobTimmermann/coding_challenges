@@ -6,10 +6,10 @@ def digit_sum(n):
     return sum(map(int, str(n)))
 
 
-def prime_factor_generator(n):    # (cf. https://stackoverflow.com/a/15703327/849891)
+def prime_factor_generator(n):  # (cf. https://stackoverflow.com/a/15703327/849891)
     j = 2
     while n > 1:
-        for i in range(j, int(sqrt(n+0.05)) + 1):
+        for i in range(j, int(sqrt(n + 0.05)) + 1):
             if n % i == 0:
                 n //= i
                 j = i
@@ -31,7 +31,7 @@ def is_prime(number_to_check, include_one=True, ascending_and_complete_prime_lis
                 continue
             if number_to_check % prime == 0:
                 return False
-            if prime < int(number_to_check ** 0.5) + 1:
+            if prime > int(number_to_check ** 0.5) + 1:
                 return True
         starting_number = max(ascending_and_complete_prime_list[-1], starting_number)
     for potential_divisor in range(starting_number, int(number_to_check ** 0.5) + 1):
@@ -49,10 +49,10 @@ def prime_number_generator():
     # number being tested.
     #
     D = {}
-    
+
     # The running integer that's checked for primeness
     q = 2
-    
+
     while True:
         if q not in D:
             # q is a new prime.
@@ -71,17 +71,31 @@ def prime_number_generator():
             for p in D[q]:
                 D.setdefault(p + q, []).append(p)
             del D[q]
-        
+
         q += 1
 
 
-def get_divisors(n, unique_divisors=False):
+def get_prime_factors(number, unique_factors=False):
+    png = prime_number_generator()
+    prime = next(png)
+    prime_factors = []
+    while number > 1:
+        while number % prime == 0:
+            prime_factors.append(prime)
+            number /= prime
+        prime = next(png)
+    if unique_factors:
+        prime_factors = list(set(prime_factors))
+    return prime_factors
+
+
+def get_factors(n, unique_factors=False):
     list_of_divisors = [1]
-    for potential_divisor in range(2, int(n**0.5) + 1):
+    for potential_divisor in range(2, int(n ** 0.5) + 1):
         if n % potential_divisor == 0:
             list_of_divisors.append(potential_divisor)
-            list_of_divisors.append(int(n/potential_divisor))
-    if unique_divisors:
+            list_of_divisors.append(int(n / potential_divisor))
+    if unique_factors:
         list_of_divisors = list(set(list_of_divisors))
     return list_of_divisors
 
@@ -107,7 +121,7 @@ def convert_list_to_number(number_list):
 
 def pentagon_numbers_generator(n=1):
     while True:
-        yield int(n * (3*n-1)/2)
+        yield int(n * (3 * n - 1) / 2)
         n += 1
 
 
@@ -115,7 +129,7 @@ def is_pentagon_number(number_to_invest):
     #  3*n**2 - n - 2p = 0
     #  n = [1 +/- sqrt(1 + 24p)]/6
     # minus case is not valid because n will be negative
-    n = (1 + sqrt(1 + 24*number_to_invest))/6
+    n = (1 + sqrt(1 + 24 * number_to_invest)) / 6
     return n.is_integer()
 
 
@@ -123,7 +137,7 @@ def is_hexagonal_number(number_to_invest):
     #  2*n**2 - n - h = 0
     #  n = [1 +/- sqrt(1 + 8p)]/4
     # minus case is not valid because n will be negative
-    n = (1 + sqrt(1 + 8*number_to_invest))/4
+    n = (1 + sqrt(1 + 8 * number_to_invest)) / 4
     return n.is_integer()
 
 
@@ -137,4 +151,5 @@ def triangle_number_generator():
     while True:
         yield int(0.5 * n * (n + 1))
         n += 1
+
 
