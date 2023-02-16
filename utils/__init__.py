@@ -11,18 +11,30 @@ def prime_factor_generator(n):    # (cf. https://stackoverflow.com/a/15703327/84
     while n > 1:
         for i in range(j, int(sqrt(n+0.05)) + 1):
             if n % i == 0:
-                n //= i ; j = i
+                n //= i
+                j = i
                 yield i
                 break
-        else:
-            if n > 1:
-                yield n; break
+            else:
+                if n > 1:
+                    yield n
+                    break
 
 
-def is_prime(number_to_check, include_one = True):
+def is_prime(number_to_check, include_one=True, ascending_and_complete_prime_list=None):
     if number_to_check < 0:
         return False
-    for potential_divisor in range(2, int(number_to_check ** 0.5) + 1):
+    starting_number = 2
+    if ascending_and_complete_prime_list:
+        for prime in ascending_and_complete_prime_list:
+            if prime < 2:
+                continue
+            if number_to_check % prime == 0:
+                return False
+            if prime < int(number_to_check ** 0.5) + 1:
+                return True
+        starting_number = max(ascending_and_complete_prime_list[-1], starting_number)
+    for potential_divisor in range(starting_number, int(number_to_check ** 0.5) + 1):
         if number_to_check % potential_divisor == 0:
             return False
     return True if include_one else number_to_check > 1
