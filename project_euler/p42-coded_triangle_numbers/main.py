@@ -1,18 +1,17 @@
+import os
+import sys
+from itertools import permutations
+
+current_folder = os.path.dirname(__file__)
+
+sys.path.append(os.path.join(current_folder, '../../'))
+
+from utils import triangle_number_generator, is_triangle_word
+
 with open("p042_words.txt","r") as file:
     words = file.read()
 words = words.split(",")
 
-
-def is_triangle_word(word, triangle_numbers):
-    ord_list = [ord(char) - 64 for char in list(word)]
-    return sum(ord_list) in triangle_numbers
-
-
-def triangle_number_generator():
-    n = 1
-    while True:
-        yield int(0.5 * n * (n + 1))
-        n += 1
 
 
 def get_triangle_numbers(limit):

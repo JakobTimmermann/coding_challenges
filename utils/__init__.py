@@ -103,3 +103,38 @@ def isPalindrome(string):
 def convert_list_to_number(number_list):
     number_str = "".join([str(n) for n in number_list])
     return int(number_str)
+
+
+def pentagon_numbers_generator(n=1):
+    while True:
+        yield int(n * (3*n-1)/2)
+        n += 1
+
+
+def is_pentagon_number(number_to_invest):
+    #  3*n**2 - n - 2p = 0
+    #  n = [1 +/- sqrt(1 + 24p)]/6
+    # minus case is not valid because n will be negative
+    n = (1 + sqrt(1 + 24*number_to_invest))/6
+    return n.is_integer()
+
+
+def is_hexagonal_number(number_to_invest):
+    #  2*n**2 - n - h = 0
+    #  n = [1 +/- sqrt(1 + 8p)]/4
+    # minus case is not valid because n will be negative
+    n = (1 + sqrt(1 + 8*number_to_invest))/4
+    return n.is_integer()
+
+
+def is_triangle_word(word, triangle_numbers):
+    ord_list = [ord(char) - 64 for char in list(word)]
+    return sum(ord_list) in triangle_numbers
+
+
+def triangle_number_generator():
+    n = 1
+    while True:
+        yield int(0.5 * n * (n + 1))
+        n += 1
+
