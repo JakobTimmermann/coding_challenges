@@ -6,15 +6,9 @@ current_folder = os.path.dirname(__file__)
 
 sys.path.append(os.path.join(current_folder, '../../'))
 
-from utils import prime_number_generator, is_prime
+from utils import prime_number_generator, is_prime, convert_list_to_number
 
 # pandigitals of length 9 and 8 are both divisible by 3
-
-
-def convert_list_to_number(number_list):
-    number_str = "".join([str(n) for n in number_list])
-    return int(number_str)
-
 
 pandigital_permutations = list(permutations(range(1, 8)))
 for pandigital_list in pandigital_permutations[::-1]:

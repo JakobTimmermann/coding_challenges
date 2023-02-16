@@ -97,9 +97,9 @@ def fibonacci_generator():
 def isPalindrome(string):
     if len(string) < 2:
         return True
-    return string[0] == string[-1] and isPalindrome(string[1:-1]) 
+    return string[0] == string[-1] and isPalindrome(string[1:-1])
 
 
-
-
-
+def convert_list_to_number(number_list):
+    number_str = "".join([str(n) for n in number_list])
+    return int(number_str)
