@@ -108,10 +108,15 @@ def fibonacci_generator():
         f1, f2 = f2, f1 + f2
 
 
-def isPalindrome(string):
+def is_palindrome(string):
     if len(string) < 2:
         return True
-    return string[0] == string[-1] and isPalindrome(string[1:-1])
+    return string[0] == string[-1] and is_palindrome(string[1:-1])
+
+
+def is_palindrome_number(number: int):
+    number_str = str(number)
+    return is_palindrome(number_str)
 
 
 def convert_list_to_number(number_list):
