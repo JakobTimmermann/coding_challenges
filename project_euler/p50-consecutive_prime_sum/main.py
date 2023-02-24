@@ -49,4 +49,3 @@ for window_width in reversed(range(max_length)):
     if is_valid_sliding_window(primes, window_width):
         print(f"Number of consecutive primes: {window_width}")
         break
-        
