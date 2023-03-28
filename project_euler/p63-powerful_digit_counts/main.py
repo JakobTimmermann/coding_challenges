@@ -1,5 +1,3 @@
-import sys
-
 def get_powerful_digit(digit):
     base = 1
     number = base**digit

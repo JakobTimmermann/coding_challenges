@@ -158,3 +158,31 @@ def triangle_number_generator():
         n += 1
 
 
+def pentagonal_number_generator():
+    n = 1
+    while True:
+        yield int(0.5*(n * (3*n - 1)))
+        n += 1
+
+
+def hexagonal_number_generator():
+    n = 1
+    while True:
+        yield int(n * (2*n - 1))
+        n += 1
+
+
+def heptagonal_number_generator():
+    n = 1
+    while True:
+        yield int(0.5*(n * (5*n - 2)))
+        n += 1
+
+
+def octagonal_number_generator():
+    n = 1
+    while True:
+        yield int(n * (3*n - 2))
+        n += 1
+
+
