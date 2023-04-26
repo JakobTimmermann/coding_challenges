@@ -161,28 +161,37 @@ def triangle_number_generator():
 def pentagonal_number_generator():
     n = 1
     while True:
-        yield int(0.5*(n * (3*n - 1)))
+        yield int(0.5 * (n * (3 * n - 1)))
         n += 1
 
 
 def hexagonal_number_generator():
     n = 1
     while True:
-        yield int(n * (2*n - 1))
+        yield int(n * (2 * n - 1))
         n += 1
 
 
 def heptagonal_number_generator():
     n = 1
     while True:
-        yield int(0.5*(n * (5*n - 2)))
+        yield int(0.5 * (n * (5 * n - 2)))
         n += 1
 
 
 def octagonal_number_generator():
     n = 1
     while True:
-        yield int(n * (3*n - 2))
+        yield int(n * (3 * n - 2))
         n += 1
 
 
+# Good ol' dynamic programming. Just took it from algoexpert questions
+def number_of_summations(n, coins):
+    ways = [0] * (n + 1)
+    ways[0] = 1
+    for coin in coins:
+        for amount in range(1, n + 1):
+            if coin <= amount:
+                ways[amount] += ways[amount - coin]
+    return ways[-1]
